@@ -1,0 +1,55 @@
+============================================
+ ROFINDER INTELLIGENCE REPORT
+ Generated: 2025-12-27 19:19:59
+============================================
+
+[ BASIC INFORMATION ]
+ Username:     Roblox
+ Display Name: Roblox
+ User ID:      1
+ Created:      2006-02-27T21:06:40.3Z
+ Is Banned:    False
+
+[ STATISTICS ]
+ Friends:      0
+ Followers:    16468815
+ Following:    0
+
+[ AVATAR ]
+ Headshot URL: https://tr.rbxcdn.com/30DAY-AvatarHeadshot-310966282D3529E36976BF6B07B1DC90-Png/420/420/AvatarHeadshot/Png/noFilter
+
+[ CURRENTLY WEARING ]
+ - Oakley Pants (Pants)
+   Link: https://www.roblox.com/catalog/301811432
+ - Roblox Baseball Cap (Hat)
+   Link: https://www.roblox.com/catalog/607702162
+ - ROBLOX Jacket (Shirt)
+   Link: https://www.roblox.com/catalog/607785314
+ - Rthro Climb (ClimbAnimation)
+   Link: https://www.roblox.com/catalog/2510230574
+ - Rthro Fall (FallAnimation)
+   Link: https://www.roblox.com/catalog/2510233257
+ - Rthro Idle (IdleAnimation)
+   Link: https://www.roblox.com/catalog/2510235063
+ - Rthro Jump (JumpAnimation)
+   Link: https://www.roblox.com/catalog/2510236649
+ - Rthro Run (RunAnimation)
+   Link: https://www.roblox.com/catalog/2510238627
+ - Rthro Swim (SwimAnimation)
+   Link: https://www.roblox.com/catalog/2510240941
+ - Rthro Walk (WalkAnimation)
+   Link: https://www.roblox.com/catalog/2510242378
+ - Stevie Standard - Head (DynamicHead)
+   Link: https://www.roblox.com/catalog/10638267973
+ - DefaultFallBackMood (MoodAnimation)
+   Link: https://www.roblox.com/catalog/10647852134
+ - Man - Left Arm (LeftArm)
+   Link: https://www.roblox.com/catalog/12995014400
+ - Man - Left Leg (LeftLeg)
+   Link: https://www.roblox.com/catalog/12995015868
+ - Man - Right Arm (RightArm)
+   Link: https://www.roblox.com/catalog/12995017412
+ - Man - Right Leg (RightLeg)
+   Link: https://www.roblox.com/catalog/12995018829
+ - Man - Torso (Torso)
+   Link: https://www.roblox.com/catalog/12995020128
