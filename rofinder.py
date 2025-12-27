@@ -21,13 +21,11 @@ def main():
     
     args = parser.parse_args()
     
-    # Clean UI start
     ui.print_banner()
 
     user_input = args.user
     user_id = None
 
-    # 1. Resolve User
     with Progress(SpinnerColumn(), TextColumn("[bold cyan]Targeting user..."), transient=True) as progress:
         progress.add_task("", total=None)
         if user_input.isdigit():
@@ -39,11 +37,9 @@ def main():
         console.print(f"[bold red]❌ Error:[/bold red] User '{user_input}' not found.")
         sys.exit(1)
 
-    # 2. Fetch Intelligence
     with Progress(SpinnerColumn(), TextColumn("[bold magenta]Extracting data..."), transient=True) as progress:
         task = progress.add_task("", total=None)
         
-        # Core
         user_info = api.get_user_info(user_id)
         if not user_info:
             console.print("[bold red]❌ Error:[/bold red] API Connection failed.")
@@ -56,7 +52,6 @@ def main():
         premium = api.get_premium_status(user_id)
         avatar = api.get_avatar_thumbnail(user_id)
         
-        # Extended
         badges = []
         groups = []
         assets = []
@@ -69,7 +64,6 @@ def main():
             assets = api.get_currently_wearing(user_id)
             favorites = api.get_favorites(user_id)
 
-    # 3. Construct Data Object
     full_data = {
         "profile": user_info,
         "stats": {"friends": friends, "followers": followers, "following": following},
@@ -81,7 +75,6 @@ def main():
         "favorites": favorites
     }
 
-    # 4. Display UI
     console.print(ui.create_user_panel(user_info, friends, followers, following, avatar, presence, premium))
     
     if args.detailed:
@@ -91,7 +84,6 @@ def main():
         if badges: console.print(ui.create_badges_table(badges))
         if groups: console.print(ui.create_groups_table(groups))
 
-    # 5. Handle Export
     if args.save:
         filename = args.save
         saved_path = ""

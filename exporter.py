@@ -7,7 +7,7 @@ class RoFinderExporter:
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def export_json(self, data, filename):
-        """Saves data to a clean JSON file"""
+        
         if not filename.endswith('.json'):
             filename += '.json'
         
@@ -24,7 +24,7 @@ class RoFinderExporter:
         return os.path.abspath(filename)
 
     def export_txt(self, data, filename):
-        """Generates a readable text report"""
+
         if not filename.endswith('.txt'):
             filename += '.txt'
 

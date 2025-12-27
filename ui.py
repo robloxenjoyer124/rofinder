@@ -12,11 +12,11 @@ console = Console()
 class RoFinderUI:
     def print_banner(self):
         banner_text = """
-    ____       _____           __
-   / __ \____ / ___/___ ____  / /_  _____ _____
-  / /_/ / __ \\__ \/ __ `/ _ \/ __ \/ ___// ___/
- / _, _/ /_/ /__/ / /_/ /  __/ / / / /__ / /
-/_/ |_|\____/____/\__,_/\___/_/ /_/\___//_/
+ ____       _____ _           _           
+|  _ \ ___ |  ___(_)_ __   __| | ___ _ __ 
+| |_) / _ \| |_  | | '_ \ / _` |/ _ \ '__|
+|  _ < (_) |  _| | | | | | (_| |  __/ |   
+|_| \_\___/|_|   |_|_| |_|\__,_|\___|_|
         """
         console.print(Panel(Align.center(Text(banner_text, style="bold cyan")), 
                             subtitle="[dim]By robloxenjoyer124[/dim]", 
@@ -41,7 +41,6 @@ class RoFinderUI:
                 dt = dateutil.parser.parse(presence_data['lastOnline'])
                 last_online = dt.strftime('%Y-%m-%d %H:%M')
 
-        # Icons
         verified = " ☑️ " if user_data.get('hasVerifiedBadge') else ""
         premium = " 💎 [black on white] PREM [/black on white]" if is_premium else ""
 
@@ -49,7 +48,6 @@ class RoFinderUI:
         grid.add_column()
         grid.add_column(justify="right")
 
-        # Info
         t1 = Table(show_header=False, box=None, padding=(0, 2))
         t1.add_row("[bold yellow]Name:", f"{user_data.get('name')} {verified}{premium}")
         t1.add_row("[bold yellow]Display:", user_data.get('displayName'))
@@ -58,7 +56,6 @@ class RoFinderUI:
         t1.add_row("[bold yellow]Seen:", last_online)
         t1.add_row("[bold yellow]Age:", f"{age} days")
 
-        # Stats
         t2 = Table(show_header=True, box=box.SIMPLE_HEAD)
         t2.add_column("Stat", style="magenta")
         t2.add_column("Val", justify="right")

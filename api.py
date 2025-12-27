@@ -23,7 +23,7 @@ class RobloxAPI:
         except: return None
 
     def get_premium_status(self, user_id):
-        # Specific endpoint for boolean check
+
         try:
             resp = self.session.get(f"https://premium.roblox.com/v1/users/{user_id}/premium-features")
             return resp.json().get('subscriptionProductModel', {}).get('renewalPeriod') is not None
@@ -63,16 +63,15 @@ class RobloxAPI:
             return data[0].get('imageUrl') if data else "N/A"
         except: return "N/A"
 
-    # --- NEW FUNCTIONS ---
     def get_currently_wearing(self, user_id):
-        """Get list of assets the avatar is currently wearing"""
+
         try:
             resp = self.session.get(f"https://avatar.roblox.com/v1/users/{user_id}/avatar")
             return resp.json().get('assets', [])
         except: return []
 
     def get_favorites(self, user_id, limit=5):
-        """Get favorite games"""
+
         try:
             url = f"https://games.roblox.com/v2/users/{user_id}/favorite/games?accessFilter=All&limit={limit}&sortOrder=Desc"
             return self.session.get(url).json().get('data', [])
