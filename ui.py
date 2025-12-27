@@ -11,7 +11,8 @@ console = Console()
 
 class RoFinderUI:
     def print_banner(self):
-        banner_text = """
+        # Added 'r' to make it a raw string (fixes the SyntaxWarning)
+        banner_text = r"""
  ____       _____ _           _           
 |  _ \ ___ |  ___(_)_ __   __| | ___ _ __ 
 | |_) / _ \| |_  | | '_ \ / _` |/ _ \ '__|
@@ -22,13 +23,20 @@ class RoFinderUI:
                             subtitle="[dim]By robloxenjoyer124[/dim]", 
                             border_style="cyan"))
 
+    def create_mini_header(self, user_data):
+        verified = "☑️" if user_data.get('hasVerifiedBadge') else ""
+        return Panel(
+            f"[bold white]Target:[/bold white] [yellow]@{user_data.get('name')}[/yellow] {verified} [dim]({user_data.get('id')})[/dim]",
+            border_style="cyan",
+            expand=False
+        )
+
     def create_user_panel(self, user_data, friends, followers, following, thumbnail, presence_data, is_premium):
         created_at = dateutil.parser.parse(user_data['created'])
         now = datetime.now(created_at.tzinfo)
         age = (now - created_at).days
         
-        status_text = "Offline"
-        status_color = "red"
+        status_text, status_color = "Offline", "red"
         last_online = "Unknown"
 
         if presence_data:
@@ -66,8 +74,22 @@ class RoFinderUI:
         grid.add_row(t1, t2)
         return Panel(grid, title=f"[bold cyan]User: {user_data.get('name')}[/bold cyan]", border_style="cyan")
 
+    def create_friends_table(self, friends_list):
+        table = Table(title=f"Friends List ({len(friends_list)})", expand=True, box=box.ROUNDED, border_style="cyan")
+        table.add_column("User ID", style="dim")
+        table.add_column("Username", style="bold white")
+        table.add_column("Display Name", style="yellow")
+        table.add_column("Status", style="green")
+
+        for f in friends_list:
+            is_online = f.get('isOnline', False)
+            status = "● Online" if is_online else "[dim]Offline[/dim]"
+            table.add_row(str(f['id']), f['name'], f['displayName'], status)
+        
+        return table
+
     def create_wearing_table(self, assets):
-        table = Table(title="Currently Wearing", expand=True, box=box.ROUNDED, border_style="blue")
+        table = Table(title="Avatar Assets (Wearing)", expand=True, box=box.ROUNDED, border_style="blue")
         table.add_column("Type", style="dim")
         table.add_column("Item Name", style="bold white")
         table.add_column("ID", style="cyan")
@@ -82,7 +104,8 @@ class RoFinderUI:
         table.add_column("Creator", style="yellow")
         
         for game in games:
-            table.add_row(game['name'], game['creatorName'])
+            creator_name = game.get('creator', {}).get('name', 'Unknown')
+            table.add_row(game.get('name', 'Unknown'), creator_name)
         return table
 
     def create_badges_table(self, badges):

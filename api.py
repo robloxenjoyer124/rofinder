@@ -4,7 +4,7 @@ class RobloxAPI:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
-            "User-Agent": "RoFinder/2.2.0 (robloxenjoyer124)",
+            "User-Agent": "RoFinder/2.3.0 (robloxenjoyer124)",
             "Accept": "application/json"
         })
 
@@ -18,12 +18,10 @@ class RobloxAPI:
         except: return None
 
     def get_user_info(self, user_id):
-        try:
-            return self.session.get(f"https://users.roblox.com/v1/users/{user_id}").json()
+        try: return self.session.get(f"https://users.roblox.com/v1/users/{user_id}").json()
         except: return None
 
     def get_premium_status(self, user_id):
-
         try:
             resp = self.session.get(f"https://premium.roblox.com/v1/users/{user_id}/premium-features")
             return resp.json().get('subscriptionProductModel', {}).get('renewalPeriod') is not None
@@ -39,6 +37,14 @@ class RobloxAPI:
     def get_friends_count(self, user_id):
         try: return self.session.get(f"https://friends.roblox.com/v1/users/{user_id}/friends/count").json().get('count', 0)
         except: return 0
+
+    def get_friends_list(self, user_id, limit=50):
+        try:
+            url = f"https://friends.roblox.com/v1/users/{user_id}/friends"
+            resp = self.session.get(url)
+            data = resp.json().get('data', [])
+            return data[:limit]
+        except: return []
 
     def get_followers_count(self, user_id):
         try: return self.session.get(f"https://friends.roblox.com/v1/users/{user_id}/followers/count").json().get('count', 0)
@@ -64,15 +70,14 @@ class RobloxAPI:
         except: return "N/A"
 
     def get_currently_wearing(self, user_id):
-
         try:
             resp = self.session.get(f"https://avatar.roblox.com/v1/users/{user_id}/avatar")
             return resp.json().get('assets', [])
         except: return []
 
-    def get_favorites(self, user_id, limit=5):
-
+    def get_favorites(self, user_id, limit=50):
         try:
-            url = f"https://games.roblox.com/v2/users/{user_id}/favorite/games?accessFilter=All&limit={limit}&sortOrder=Desc"
-            return self.session.get(url).json().get('data', [])
+            url = f"https://games.roblox.com/v2/users/{user_id}/favorite/games?limit={limit}&sortOrder=Desc"
+            resp = self.session.get(url)
+            return resp.json().get('data', [])
         except: return []
